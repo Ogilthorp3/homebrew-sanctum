@@ -3,8 +3,8 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.8.0.tar.gz"
-  sha256 "42021010b76451bf92f6d7de918b2de8fc511095fe6fb66725e1ce5a106addc4"
+  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.9.0.tar.gz"
+  sha256 "5120f733ec1065fe3ada480a001c5ce11dc150de80c04e0ce20523e21463c63e"
   license "Apache-2.0"
 
   depends_on "python@3.12"
