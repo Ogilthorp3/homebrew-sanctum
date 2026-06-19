@@ -19,8 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Stage this checkout as a tap (so the branch's formula is what installs)
+        run: |
+          set -euxo pipefail
+          brew tap-new ogilthorp3/sanctum --no-git
+          cp ./Formula/sanctum-cli.rb "$(brew --repository ogilthorp3/sanctum)/Formula/sanctum-cli.rb"
+
       - name: Brew install the formula (downloads tarball, checks sha256, builds venv)
-        run: brew install --formula ./Formula/sanctum-cli.rb
+        run: brew install ogilthorp3/sanctum/sanctum-cli
 
       - name: Smoke test the installed binary
         run: |
@@ -38,7 +44,7 @@ jobs:
           printf '%s\n' "$out" | grep -q "part of the beta"
 
       - name: brew test (runs the formula's test block)
-        run: brew test --formula ./Formula/sanctum-cli.rb
+        run: brew test ogilthorp3/sanctum/sanctum-cli
 
       - name: brew audit (informational)
-        run: brew audit --formula ./Formula/sanctum-cli.rb || true
+        run: brew audit ogilthorp3/sanctum/sanctum-cli || true
