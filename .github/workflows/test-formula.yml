@@ -38,10 +38,10 @@ jobs:
           mkdir -p "$HOME"
           sanctum init --name ci --yes
           sanctum status
-          # A haus-gated command must show the beta banner and exit 0.
-          out="$(sanctum council "hi")"
+          # A haus-gated command must show the haus banner (on stderr) and exit 0.
+          out="$(sanctum council "hi" 2>&1)"
           printf '%s\n' "$out"
-          printf '%s\n' "$out" | grep -q "part of the beta"
+          printf '%s\n' "$out" | grep -qi "full Sanctum haus"
 
       - name: brew test (runs the formula's test block)
         run: brew test ogilthorp3/sanctum/sanctum-cli
