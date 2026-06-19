@@ -11,6 +11,12 @@ class SanctumCli < Formula
 
   depends_on "python@3.12"
   depends_on "restic"
+  # jiter (a transitive dep via anthropic) ships a prebuilt wheel whose
+  # .so lacks Mach-O headerpad, so Homebrew can't rewrite its install name
+  # ("Updated load commands do not fit in the header") and the install
+  # fails. Building that one package from source gives it the headerpad,
+  # which needs Rust at build time.
+  depends_on "rust" => :build
   depends_on "rclone" => :optional
 
   def install
@@ -20,8 +26,9 @@ class SanctumCli < Formula
     # Install sanctum-cli with all runtime dependencies from PyPI.
     # The pyproject pins the direct deps (typer, pydantic, pyyaml, rich,
     # platformdirs, httpx, anthropic, google-genai); pip resolves the
-    # transitive closure.
-    system venv_root/"bin/pip", "install", buildpath
+    # transitive closure. Build jiter from source (see the rust build dep
+    # above) so its extension is relocatable.
+    system venv_root/"bin/pip", "install", "--no-binary", "jiter", buildpath
     # Symlink the entrypoint into Homebrew's bin so `sanctum` is on PATH.
     bin.install_symlink venv_root/"bin/sanctum"
   end
