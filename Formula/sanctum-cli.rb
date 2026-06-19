@@ -3,8 +3,8 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.10.0.tar.gz"
-  sha256 "0e6b3b8051a4bc7bce8c95a2e90ec2e5d08eebca86db73ede19fa1c3c14302f4"
+  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.10.1.tar.gz"
+  sha256 "a5f51b820fcaec6d15940d725b7381caf377f92d81758d83c47275632b10983c"
   # FSL-1.1-MIT (Functional Source License, MIT future grant) — not a
   # registered SPDX identifier, so Homebrew can't express it directly.
   license :cannot_represent
