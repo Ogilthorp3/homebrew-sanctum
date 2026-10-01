@@ -3,8 +3,8 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.15.4.tar.gz"
-  sha256 "312ca57a5b3ee8ef1a3ebecb44958343789d51435c47eb1f040fe838003d9fd4"
+  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.15.5.tar.gz"
+  sha256 "983731204ad672eec3c1b053b5f9c0f0e688b2a47ae453ccbee2dd61bb39d665"
   # FSL-1.1-MIT (Functional Source License, MIT future grant) — not a
   # registered SPDX identifier, so Homebrew can't express it directly.
   license :cannot_represent
@@ -37,5 +37,6 @@ class SanctumCli < Formula
     # Smoke test: the help screen should render. Doesn't touch the
     # filesystem or network beyond what Click's --help does.
     assert_match "sanctum", shell_output("#{bin}/sanctum --help")
+    assert_match "send", shell_output("#{bin}/sanctum mesh --help")
   end
 end
