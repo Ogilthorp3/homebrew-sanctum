@@ -33,9 +33,10 @@ Source and full documentation:
 
 The tap itself (this repository — the formula files) is trivial packaging
 metadata. The software it installs is licensed separately: `sanctum-cli` is
-**FSL-1.1-MIT** (Functional Source License with an MIT future grant). FSL is not
-a registered SPDX identifier, which is why the formula declares
-`license :cannot_represent` — see the formula for the note.
+**FSL-1.1-Apache-2.0** (Functional Source License with an Apache 2.0 future
+grant; SPDX ID: `FSL-1.1-ALv2`). Because Homebrew's SPDX check does not accept
+`FSL-1.1-Apache-2.0` verbatim, the formula declares `license :cannot_represent`
+— see the formula for the note.
 
 Read the licence in the [sanctum-cli
 repository](https://github.com/Ogilthorp3/sanctum-cli/blob/main/LICENSE) before
