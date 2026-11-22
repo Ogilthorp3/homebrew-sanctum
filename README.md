@@ -44,7 +44,7 @@ redistributing.
 
 ## Security
 
-Report vulnerabilities privately to `security@sanctum.run`, or through the
-[sanctum-cli security
-advisories](https://github.com/ogilthorp3/sanctum-cli/security/advisories/new) —
+See [`SECURITY.md`](./SECURITY.md) for our vulnerability disclosure policy and
+supply-chain posture. Report vulnerabilities privately to `security@sanctum.run`
+or through [GitHub Security Advisories](https://github.com/Ogilthorp3/homebrew-sanctum/security/advisories/new) —
 not as a public issue.
