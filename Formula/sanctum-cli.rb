@@ -1,7 +1,7 @@
 class SanctumCli < Formula
   include Language::Python::Virtualenv
 
-  desc "Unified terminal binary for Sanctum — router, wizard, doctor"
+  desc "Unified terminal binary for Sanctum (beta) — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
   # Keep v0.15.5 release tarball until post-Dragon Wave 4 tags v1.0.0;
   # bump url + sha256 to the v1.0.0 release tarball then (head tracks main).
@@ -439,6 +439,13 @@ class SanctumCli < Formula
     end
 
     venv.pip_install_and_link buildpath, build_isolation: false
+  end
+
+  def caveats
+    <<~EOS
+      Sanctum 1.0 is in public beta — looking for beta users and feedback:
+        https://github.com/Ogilthorp3/sanctum-cli/issues
+    EOS
   end
 
   test do
