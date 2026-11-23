@@ -3,10 +3,8 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum (beta) — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  # Keep v0.15.5 release tarball until post-Dragon Wave 4 tags v1.0.0;
-  # bump url + sha256 to the v1.0.0 release tarball then (head tracks main).
-  url "https://github.com/Ogilthorp3/sanctum-cli/archive/refs/tags/v0.15.5.tar.gz"
-  sha256 "983731204ad672eec3c1b053b5f9c0f0e688b2a47ae453ccbee2dd61bb39d665"
+  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.0/sanctum_cli-1.0.0.tar.gz"
+  sha256 "fe8bb6e814e3087cbd2e8a66db8ad8f4844f85e2c7bff3d5a2fd166bcc0a3255"
   # FSL-1.1-Apache-2.0 (Functional Source License, Apache 2.0 future grant;
   # SPDX ID: FSL-1.1-ALv2). Homebrew's SPDX check rejects "FSL-1.1-Apache-2.0"
   # verbatim, so keep :cannot_represent here.
