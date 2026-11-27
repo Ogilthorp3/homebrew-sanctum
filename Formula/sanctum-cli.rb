@@ -11,6 +11,13 @@ class SanctumCli < Formula
   license :cannot_represent
   head "https://github.com/Ogilthorp3/sanctum-cli.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v1.0.7"
+    sha256 cellar: :any, arm64_golden_gate: "f4b2c510d2835174696c8d14b55a6feb619f598ddfa191ef1243d2226404d4ac"
+    sha256 cellar: :any, arm64_sequoia:     "cc960d45668791720d9074d189dcfd372ac41347193dd8602ea70dcdafbf342d"
+    sha256 cellar: :any, arm64_tahoe:       "1a99a154b4707bf138fa4330ef2d38a6ff9e2405b341b84f2b930723d86a8803"
+  end
+
 
 
   depends_on "maturin" => :build
