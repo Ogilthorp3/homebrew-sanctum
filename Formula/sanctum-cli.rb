@@ -11,6 +11,11 @@ class SanctumCli < Formula
   license :cannot_represent
   head "https://github.com/Ogilthorp3/sanctum-cli.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v1.0.4"
+    sha256 cellar: :any, arm64_golden_gate: "166b2fca9204ef51cf565e4d1f857bc67aec324743e24f654479daa6f561185b"
+  end
+
   depends_on "maturin" => :build
   depends_on "pkgconf" => :build
   # jiter, pydantic-core, and cryptography build native Rust extensions via

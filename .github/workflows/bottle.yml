@@ -1,9 +1,9 @@
 name: Build Homebrew Bottles
 
 # Builds pre-compiled Apple Silicon Homebrew bottles for Formula/sanctum-cli.rb
-# on macOS runners (arm64_sequoia + arm64_sonoma) and uploads them to a $0
-# GitHub Release (`bottles-v<version>`) so `brew install sanctum-cli` completes
-# in ~4 seconds instead of compiling Rust wheels from source (~3.5 minutes).
+# on macOS arm64 runners (macos-15 -> arm64_sequoia, macos-26 -> arm64_tahoe)
+# and uploads them to a $0 GitHub Release (`bottles-v<version>`) so
+# `brew install sanctum-cli` completes in ~4 seconds instead of ~3.5 minutes.
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, macos-14]
+        os: [macos-15, macos-26]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     env:
@@ -51,6 +51,7 @@ jobs:
 
   publish:
     needs: bottle
+    if: ${{ !cancelled() && (needs.bottle.result == 'success' || needs.bottle.result == 'failure') }}
     runs-on: macos-15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
