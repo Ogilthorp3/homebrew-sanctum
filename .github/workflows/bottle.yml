@@ -1,0 +1,80 @@
+name: Build Homebrew Bottles
+
+# Builds pre-compiled Apple Silicon Homebrew bottles for Formula/sanctum-cli.rb
+# on macOS runners (arm64_sequoia + arm64_sonoma) and uploads them to a $0
+# GitHub Release (`bottles-v<version>`) so `brew install sanctum-cli` completes
+# in ~4 seconds instead of compiling Rust wheels from source (~3.5 minutes).
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "sanctum-cli version (e.g. 1.0.4)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  bottle:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_ANALYTICS: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Stage formula in local tap and build bottle
+        run: |
+          set -euo pipefail
+          VER="${{ inputs.version }}"
+          ROOT_URL="https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v${VER}"
+          brew tap-new ogilthorp3/sanctum --no-git
+          cp ./Formula/sanctum-cli.rb "$(brew --repository ogilthorp3/sanctum)/Formula/sanctum-cli.rb"
+          brew install --build-bottle ogilthorp3/sanctum/sanctum-cli
+          brew test ogilthorp3/sanctum/sanctum-cli
+          mkdir -p dist-bottles && cd dist-bottles
+          brew bottle --force-core-tap --no-rebuild --json --root-url="$ROOT_URL" ogilthorp3/sanctum/sanctum-cli
+          ls -la
+
+      - name: Upload bottle artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: bottle-${{ matrix.os }}
+          path: dist-bottles/*
+
+  publish:
+    needs: bottle
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          path: all-bottles
+          merge-multiple: true
+
+      - name: Publish bottles to GitHub Release ($0)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VER="${{ inputs.version }}"
+          TAG="bottles-v${VER}"
+          cd all-bottles
+          for f in *--*.bottle.tar.gz; do
+            clean="${f/--/-}"
+            [ "$f" = "$clean" ] || mv "$f" "$clean"
+          done
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" *.bottle.tar.gz *.bottle.json --clobber
+          else
+            gh release create "$TAG" *.bottle.tar.gz *.bottle.json \
+              --title "Homebrew Bottles — sanctum-cli v${VER}" \
+              --notes "Pre-compiled Apple Silicon Homebrew bottles for \`sanctum-cli v${VER}\`."
+          fi

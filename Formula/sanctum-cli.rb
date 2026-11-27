@@ -3,8 +3,8 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum (beta) — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.3/sanctum_cli-1.0.3.tar.gz"
-  sha256 "726f379d52ac2f63fbad66ab25bef722ecf8b7ed99ac72eba3b96dc0d8e3d18e"
+  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.4/sanctum_cli-1.0.4.tar.gz"
+  sha256 "2738c5b201be7300e8dd7245bbdace96a8c1486ff8d8e85de38a3adfae591c7d"
   # FSL-1.1-Apache-2.0 (Functional Source License, Apache 2.0 future grant;
   # SPDX ID: FSL-1.1-ALv2). Homebrew's SPDX check rejects "FSL-1.1-Apache-2.0"
   # verbatim, so keep :cannot_represent here.
