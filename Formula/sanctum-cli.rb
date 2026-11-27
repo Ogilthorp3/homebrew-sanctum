@@ -3,19 +3,14 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum (beta) — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.4/sanctum_cli-1.0.4.tar.gz"
-  sha256 "2738c5b201be7300e8dd7245bbdace96a8c1486ff8d8e85de38a3adfae591c7d"
+  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.5/sanctum_cli-1.0.5.tar.gz"
+  sha256 "305eb9154737e7b3812135af7019c9c749653f7e827d88076aa2b1d2dbf48df0"
   # FSL-1.1-Apache-2.0 (Functional Source License, Apache 2.0 future grant;
   # SPDX ID: FSL-1.1-ALv2). Homebrew's SPDX check rejects "FSL-1.1-Apache-2.0"
   # verbatim, so keep :cannot_represent here.
   license :cannot_represent
   head "https://github.com/Ogilthorp3/sanctum-cli.git", branch: "main"
 
-  bottle do
-    root_url "https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v1.0.4"
-    sha256 cellar: :any, arm64_golden_gate: "166b2fca9204ef51cf565e4d1f857bc67aec324743e24f654479daa6f561185b"
-    sha256 cellar: :any, arm64_sequoia:     "2fc6ce041ea28a486bc10d032a3fbf06e47536b431d7a48e9f217801e103dff3"
-  end
 
   depends_on "maturin" => :build
   depends_on "pkgconf" => :build
