@@ -14,6 +14,7 @@ class SanctumCli < Formula
   bottle do
     root_url "https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v1.0.4"
     sha256 cellar: :any, arm64_golden_gate: "166b2fca9204ef51cf565e4d1f857bc67aec324743e24f654479daa6f561185b"
+    sha256 cellar: :any, arm64_sequoia:     "2fc6ce041ea28a486bc10d032a3fbf06e47536b431d7a48e9f217801e103dff3"
   end
 
   depends_on "maturin" => :build
