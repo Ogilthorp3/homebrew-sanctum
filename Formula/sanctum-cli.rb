@@ -3,20 +3,14 @@ class SanctumCli < Formula
 
   desc "Unified terminal binary for Sanctum (beta) — router, wizard, doctor"
   homepage "https://github.com/Ogilthorp3/sanctum-cli"
-  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.5/sanctum_cli-1.0.5.tar.gz"
-  sha256 "305eb9154737e7b3812135af7019c9c749653f7e827d88076aa2b1d2dbf48df0"
+  url "https://github.com/Ogilthorp3/sanctum-cli/releases/download/v1.0.6/sanctum_cli-1.0.6.tar.gz"
+  sha256 "851d4524879a0610ac259f9e1f467f47e225513e11747248fbb05caa53d00028"
   # FSL-1.1-Apache-2.0 (Functional Source License, Apache 2.0 future grant;
   # SPDX ID: FSL-1.1-ALv2). Homebrew's SPDX check rejects "FSL-1.1-Apache-2.0"
   # verbatim, so keep :cannot_represent here.
   license :cannot_represent
   head "https://github.com/Ogilthorp3/sanctum-cli.git", branch: "main"
 
-  bottle do
-    root_url "https://github.com/Ogilthorp3/homebrew-sanctum/releases/download/bottles-v1.0.5"
-    sha256 cellar: :any, arm64_golden_gate: "5a3a599e419cb95ed5d6645a57f7062ed4fb2af975572fe581d02a16b6d766e4"
-    sha256 cellar: :any, arm64_sequoia:     "ea64fbea5e999309d1f849aede5e77dc7999344f93a0ed3c606695a5a56549d6"
-    sha256 cellar: :any, arm64_tahoe:       "ff826d96a12465dd2123103ceb2c3677fb98e8816ef77366801c608622281170"
-  end
 
 
   depends_on "maturin" => :build
